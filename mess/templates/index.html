@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mess Hall - Home</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Mess Hall</h1>
+    <nav>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'menu' %}">Menu</a>
+    </nav>
+  </header>
+  <main>
+    <p>Enjoy delicious meals at affordable prices. Click below to view our menu.</p>
+    <a href="{% url 'menu' %}" class="btn">View Menu</a>
+  </main>
+  <footer>
+    <p>&copy; 2025 Mess Hall. All rights reserved.</p>
+  </footer>
+</body>
+</html>

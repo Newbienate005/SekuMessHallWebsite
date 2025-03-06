@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mess Hall - Menu</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Mess Hall Menu</h1>
+    <nav>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'menu' %}">Menu</a>
+    </nav>
+  </header>
+  <main>
+    <div class="menu-container">
+      <div class="menu-item" data-name="Chapati" data-price="10">
+        <h3>Chapati - 10</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Sukuma" data-price="8">
+        <h3>Sukuma - 8</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Cabbage" data-price="12">
+        <h3>Cabbage - 12</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Beef Stew" data-price="50">
+        <h3>Beef Stew - 50</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Mseto" data-price="30">
+        <h3>Mseto - 30</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Ndengu" data-price="15">
+        <h3>Ndengu - 15</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Beans" data-price="15">
+        <h3>Beans - 15</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Ugali" data-price="6">
+        <h3>Ugali - 6</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Pilau" data-price="70">
+        <h3>Pilau - 70</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+      <div class="menu-item" data-name="Rice" data-price="20">
+        <h3>Rice - 20</h3>
+        <button class="add-to-cart">Add to Cart</button>
+      </div>
+    </div>
+    <div class="cart">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p>Total: $<span id="total">0</span></p>
+      <button id="checkout" style="display: none;">Proceed to Payment</button>
+      <button id="pay-now" style="display: none;">Pay Now</button>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Mess Hall. All rights reserved.</p>
+  </footer>
+  <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

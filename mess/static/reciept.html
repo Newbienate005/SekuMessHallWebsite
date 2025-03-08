@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receipt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Mess Hall Receipt</h1>
+  </header>
+  <main>
+    <div class="receipt-container">
+      <h2>Thank you for your order!</h2>
+      <ul id="receipt-items"></ul>
+      <p>Total: $<span id="receipt-total">0</span></p>
+      <button id="print-receipt">Print Receipt</button><br>
+      <button id="download-receipt">Download Receipt</button> <!-- New button for downloading -->
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2023 Mess Hall. All rights reserved.</p>
+  </footer>
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const total = localStorage.getItem('total') || 0;
+
+    const receiptItems = document.getElementById('receipt-items');
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = `${item.name} - $${item.price}`;
+      receiptItems.appendChild(li);
+    });
+
+    document.getElementById('receipt-total').textContent = total;
+
+    document.getElementById('print-receipt').addEventListener('click', () => {
+      window.print();
+    });
+
+    // Function to download the receipt
+    document.getElementById('download-receipt').addEventListener('click', () => {
+      const receiptContent = `Mess Hall Receipt\n\nThank you for your order!\n\nItems:\n` +
+        cart.map(item => `${item.name} - $${item.price}`).join('\n') +
+        `\n\nTotal: $${total}`;
+
+      const blob = new Blob([receiptContent], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'receipt.txt'; // Name of the downloaded file
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url); // Clean up the URL object
+    });
+  </script>
+</body>
+</html>

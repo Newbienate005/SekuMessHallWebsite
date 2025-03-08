@@ -33,13 +33,16 @@ function updateCart() {
 }
 
 document.getElementById('checkout').addEventListener('click', () => {
-  const phoneNumber = prompt("Enter your M-Pesa phone number (e.g., 2547XXXXXXXX):");
+  const phoneNumber = prompt("Enter your M-Pesa phone number (e.g., +254XXXXXXXXX):");
 
   if (phoneNumber) {
-    if (/^2547\d{8}$/.test(phoneNumber)) { 
+    if (/^\+254\d{9}$/.test(phoneNumber)) { 
       alert(`Payment request sent to ${phoneNumber}. Please check your phone to complete the payment.`);
       setTimeout(() => {
         alert(`Payment of $${total.toFixed(2)} successful! Click "Pay Now" to generate your receipt.`);
+      
+      // redirect to the receipt.html file
+      window.location.href = 'receipt.html';
       }, 3000);
     } else {
       alert("Invalid phone number. Please enter a valid M-Pesa number (e.g., 2547XXXXXXXX).");

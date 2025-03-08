@@ -127,3 +127,17 @@ footer {
 #print-receipt:hover {
   background-color: #1E7A1E; 
 }
+
+#download-receipt {
+  background-color: #228B22; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#download-receipt:hover {
+  background-color: #1E7A1E; 
+}

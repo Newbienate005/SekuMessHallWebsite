@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seku mess haul</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+ </head>
+<body>
+  <div class="container">
+    <h1>Welcome To the Mess haul!</h1>
+    <button onclick="showLogin()">Login</button>
+    <button onclick="showSignup()">Signup</button>
+
+    <!-- Login Form -->
+    <div id="login-form" style="display: none;">
+      <select id="login-role" onchange="updateLoginFields()">
+        <option value="student">Student</option>
+        <option value="worker">Worker</option>
+        <option value="admin">Admin</option>
+      </select>
+      <input type="text" id="login-username" placeholder="Registration Number/Full Name">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup-form" style="display: none;">
+      <select id="signup-role" class="role-select" onchange="updateSignupFields()">
+        <option value="">Select Role</option>
+        <option value="student">Sign up as Student</option>
+        <option value="worker">Sign up as Worker</option>
+        <option value="admin">Sign up as Admin</option>
+      </select>
+      <input type="text" id="signup-username" placeholder="Full Name" style="display: none;">
+      <input type="text" id="signup-registration" placeholder="Registration Number (e.g., A123/1239/1234)" style="display: none;">
+      <input type="password" id="signup-password" placeholder="Password" style="display: none;">
+      <button onclick="signup()" style="display: none;">Signup</button>
+    </div>
+  </div>
+  <script src="{% static 'login.js' %}"></script>
+</body>
+</html>

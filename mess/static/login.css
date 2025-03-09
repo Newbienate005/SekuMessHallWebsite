@@ -7,46 +7,95 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-  }
-  .container {
+}
+
+/* Form Container */
+.container {
     background-color: #ffffff;
-    padding: 28px;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 300px;
-    height: 500px; 
-  }
-  h1 {
+    width: 350px;
+    max-width: 90%;
+    height: auto;
+}
+
+/* Headings */
+h1 {
     color: #134e32;
-  }
-  input, select, button {
+    margin-bottom: 20px;
+}
+
+/* Input Fields & Select */
+input, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 10px;
-  }
-  button {
-    background-color: #02361d;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #03773d;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
     color: white;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #03773d;
-  }
-  .dropdown {
     background-color: #02361d;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #03773d;
+}
+
+/* Dropdown */
+.dropdown {
+    background-color: #f4f4f4;
     display: none;
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 10px;
-  }
-  .role-select {
-    background-color:white;
+}
+
+/* Role Selection */
+.role-select {
+    background-color: white;
     color: #02361d;
-  }
-  .role-select:hover {
-    background-color: #134e32;
-  }
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.role-select:hover {
+    background-color: #f0f0f0;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    input, select, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

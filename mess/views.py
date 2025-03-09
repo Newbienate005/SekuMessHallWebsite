@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
+
+from mess.forms import  UserForm
 
 
 # Create your views here.
@@ -13,42 +13,16 @@ def menu(request):
 def reciept(request):
     return render(request,'reciept.html')
 
-def user_signup(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        role = request.POST.get("role")
-        registration_number = request.POST.get("registration_number", None)
+def signup(request):
+    form=UserForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect ('index')
+        
+        else: form = UserForm()
 
-        if role == "Student" and not registration_number:
-            return JsonResponse({"error": "Registration number is required for students"}, status=400)
 
-        user = User.objects.create_user(username=username, password=password)
-        user.role = role
-        user.registration_number = registration_number
-        user.save()
 
-        return JsonResponse({"message": "Signup successful"}, status=201)
-
-    return render(request, "signup.html")
-def user_login(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-
-        user = authenticate(request, username=username, password=password)
-
-        if user:
-            login(request, user)
-            return JsonResponse({"message": "Login successful"}, status=200)
-        else:
-            return JsonResponse({"error": "Invalid credentials"}, status=400)
-
-    return render(request, "login.html")
-
-def user_logout(request):
-    logout(request)
-    return redirect("login")
-def user_logout(request):
-    logout(request)
-    return redirect("login")
+    return render(request,'signup.html', {'form': form})
+   

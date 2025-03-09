@@ -1,116 +1,96 @@
-// Show Login Form
-function showLogin() {
-    document.getElementById('login-form').style.display = 'block';
-    document.getElementById('signup-form').style.display = 'none';
-}
-
-// Show Signup Form
+// Function to show the signup form
 function showSignup() {
-    document.getElementById('signup-form').style.display = 'block';
-    document.getElementById('login-form').style.display = 'none';
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("signup-form").style.display = "block";
 }
 
-// Update Login Fields Based on Role
-function updateLoginFields() {
-    const role = document.getElementById('login-role').value;
-    const usernameField = document.getElementById('login-username');
-    usernameField.placeholder = role === 'student' ? 'Registration Number' : 'Full Name';
+// Function to show the login form
+function showLogin() {
+    document.getElementById("signup-form").style.display = "none";
+    document.getElementById("login-form").style.display = "block";
 }
 
-// Update Signup Fields Based on Role
+// Function to update signup fields based on role selection
 function updateSignupFields() {
-    const role = document.getElementById('signup-role').value;
-    const usernameField = document.getElementById('signup-username');
-    const registrationField = document.getElementById('signup-registration');
-    const passwordField = document.getElementById('signup-password');
-    const signupButton = document.querySelector('#signup-form button');
+    const role = document.getElementById("signup-role").value;
+    const usernameField = document.getElementById("signup-username");
+    const regNumberField = document.getElementById("signup-registration");
+    const passwordField = document.getElementById("signup-password");
+    const signupButton = document.querySelector("#signup-form button");
 
-    if (role === 'student') {
-        usernameField.style.display = 'none';
-        registrationField.style.display = 'block';
-        passwordField.style.display = 'block';
-        signupButton.style.display = 'block';
-    } else if (role === 'worker' || role === 'admin') {
-        usernameField.style.display = 'block';
-        registrationField.style.display = 'none';
-        passwordField.style.display = 'block';
-        signupButton.style.display = 'block';
-    } else {
-        usernameField.style.display = 'none';
-        registrationField.style.display = 'none';
-        passwordField.style.display = 'none';
-        signupButton.style.display = 'none';
+    // Initially hide all fields
+    usernameField.style.display = "none";
+    regNumberField.style.display = "none";
+    passwordField.style.display = "none";
+    signupButton.style.display = "none";
+
+    if (role) {
+        usernameField.style.display = "block";
+        passwordField.style.display = "block";
+        signupButton.style.display = "block";
+
+        if (role === "student") {
+            regNumberField.style.display = "block"; // Show registration number for students
+        }
     }
 }
 
-// Login Functionality
-function login() {
-    const role = document.getElementById('login-role').value;
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
-
-    // Validate Student Registration Number
-    if (role === 'student' && !username.match(/^[A-Z]\d{3,4}$/)) {
-        alert('Invalid registration number. Format: Uppercase letter followed by 3 or 4 digits.');
-        return;
-    }
-
-    // Validate Worker/Admin Full Name
-    if ((role === 'worker' || role === 'admin') && username.trim() === '') {
-        alert('Please enter your full name.');
-        return;
-    }
-
-    // Validate Password
-    if (password.trim() === '') {
-        alert('Please enter a password.');
-        return;
-    }
-
-    // Redirect based on role
-    if (role === 'student') {
-        window.location.href = 'student.html';
-    } else if (role === 'worker') {
-        window.location.href = 'worker.html';
-    } else if (role === 'admin') {
-        window.location.href = 'admin.html';
-    }
-}
-
-// Signup Functionality
+// Function to sign up a user
 function signup() {
-    const role = document.getElementById('signup-role').value;
-    const username = document.getElementById('signup-username').value;
-    const registration = document.getElementById('signup-registration').value;
-    const password = document.getElementById('signup-password').value;
+    const role = document.getElementById("signup-role").value;
+    const username = document.getElementById("signup-username").value;
+    const registrationNumber = document.getElementById("signup-registration").value;
+    const password = document.getElementById("signup-password").value;
 
-    // Validate Student Registration Number
-    if (role === 'student' && !registration.match(/^[A-Z]\d{3,4}$/)) {
-        alert('Invalid registration number. Format: Uppercase letter followed by 3 or 4 digits.');
+    // Ensure required fields are filled
+    if (!role || !username || !password || (role === "student" && !registrationNumber)) {
+        alert("Please fill all required fields.");
         return;
     }
 
-    // Validate Worker/Admin Full Name
-    if ((role === 'worker' || role === 'admin') && username.trim() === '') {
-        alert('Please enter your full name.');
-        return;
+    // Validate student registration number format
+    if (role === "student") {
+        const regPattern = /^G\d{3}\/\d{4}\/\d{4}$/;
+        if (!regPattern.test(registrationNumber)) {
+            alert("Invalid registration number format. Use G127/1448/2023.");
+            return;
+        }
     }
 
-    // Validate Password
-    if (password.trim() === '') {
-        alert('Please enter a password.');
-        return;
+    // Prepare form data
+    let formData = new FormData();
+    formData.append("role", role);
+    formData.append("username", username);
+    formData.append("password", password);
+    if (role === "student") {
+        formData.append("registration_number", registrationNumber);
     }
 
-    // Corrected Template String for Alert
-    alert(`Signed up as ${role}: ${role === 'student' ? registration : username}`);
+    // Send signup request
+    fetch("/signup/", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": getCSRFToken(),
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === "Signup successful") {
+            alert("Signup successful! Redirecting...");
+            window.location.href = "/index/";  // Redirect to index.html
+        } else {
+            alert("Signup failed: " + data.error);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
 
-    // Redirect based on role
-    if (role === 'student') {
-        window.location.href = "{% url 'index' %}";
-    } else if (role === 'worker') {
-        window.location.href = "{% url 'index' %}";
-    } else if (role === 'admin') {
-        window.location.href = "{% url 'index' %}";
+// Function to get CSRF token (important for Django)
+function getCSRFToken() {
+    let csrfToken = document.cookie.split('; ').find(row => row.startsWith('csrftoken'))?.split('=')[1];
+    if (!csrfToken) {
+        console.error("CSRF token not found! Ensure your template includes {% csrf_token %}.");
     }
+    return csrfToken;
 }

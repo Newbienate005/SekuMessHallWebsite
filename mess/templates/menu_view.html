@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Available items</title>
+    </head>
+    <body>
+        <h1>Available food</h1>
+        <table >
+           <thead>
+            <tr>
+               <th>name</th>
+               <th>price</th>
+               <th>isavailable</th> 
+            </tr>
+           </thead>
+           <tbody>
+            {% for menuitem in data %}
+            <tr>
+                <td>{{ menuitem.name }}</td>
+                <td> {{ menuitem.price }}</td>
+                <td>{{ menuitem.isavailable }}</td>
+                <td><a href="{% url 'edit' menuitem.id %}" type="button">EDIT Menuitem</a></td>
+                <td><a href="{% url 'delete' menuitem.id %}"  type="button"
+                       onclick="return confirm('Are you sure ')">DELETE MenuitemT</a></td>
+            </tr>
+            {% endfor %}
+           </tbody>
+        </table>
+    </body>
+</html>

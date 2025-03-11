@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Sign up</title>
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Signup Form</title>
+</head>
+<body>
+        {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+    <div class="form-container">
+        <h2>Signup Form</h2>
         <form action="" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">ADD USER</button>
+            <button type="submit" class="form-button">Signup</button>
+            <p>Already have an account <a href="{% url 'login' %}">LOGIN</a></p>
         </form>
-    </body>
+        <p class="footer">© South Eastern Kenya University </p>
+    </div>
+</body>
 </html>

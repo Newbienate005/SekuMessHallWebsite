@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> edit</title>
+    </head>
+    <body>
+        <h3>Edit Student</h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn btn-success" type="submit">UPDATE</button>
+    <a href="{% url 'menu' %}" >Cancel</a>
+</form>
+    </body>
+</html>

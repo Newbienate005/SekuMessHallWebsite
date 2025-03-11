@@ -1,74 +1,293 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mess Hall - Menu</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <title>Menu</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      color:#FFCE1B;
+      font-style: italic;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color:#0e3522;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header .right-message {
+      font-size: 20px;
+      font-style: italic;
+      color: #FFCE1B;
+    }
+
+    /* Semi-Header Styles */
+    .semi-header {
+      text-align: center;
+      font-size: 20px;
+      padding: 10px;
+      background-color: #134e32;
+      color: white;
+      font-style: normal;
+    }
+
+    /* Menu Items Styles */
+    .menu-container, .beverage-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .menu-item, .beverage-item {
+      background-color:#134e32;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      color: white;
+      width: 200px;
+      text-align: center;
+    }
+
+    .menu-item h3, .beverage-item h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .menu-item button, .beverage-item button {
+      background-color: white;
+      color: #134e32;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .menu-item button:hover, .beverage-item button:hover {
+      background-color: #FFCE1B;
+    }
+
+    /* Beverage Header Styles */
+    .beverage-header {
+      text-align: center;
+      font-size: 24px;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #0e3522;
+      color: white;
+    }
+
+    /* Cart Styles */
+    .cart button{
+      background-color: #134e32;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .cart button :hover{
+      background-color:#FFCE1B ;
+    }
+
+    .cart ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .cart ul li {
+      background-color: #f9f9f9;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      color: #134e32 ;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Mess Hall Menu</h1>
-    <nav>
-      <a href="{% url 'index' %}">Home</a>
-      <a href="{% url 'menu' %}">Menu</a>
-    </nav>
+    <h1>Today's menu</h1>
+    <div class="right-message">Enjoy!</div>
   </header>
-  <main>
-    <div class="menu-container">
-      <div class="menu-item" data-name="Chapati" data-price="10">
-        <h3>Chapati - 10</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Sukuma" data-price="8">
-        <h3>Sukuma - 8</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Cabbage" data-price="12">
-        <h3>Cabbage - 12</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Beef Stew" data-price="50">
-        <h3>Beef Stew - 50</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Mseto" data-price="30">
-        <h3>Mseto - 30</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Ndengu" data-price="15">
-        <h3>Ndengu - 15</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Beans" data-price="15">
-        <h3>Beans - 15</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Ugali" data-price="6">
-        <h3>Ugali - 6</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Pilau" data-price="70">
-        <h3>Pilau - 70</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
-      <div class="menu-item" data-name="Rice" data-price="20">
-        <h3>Rice - 20</h3>
-        <button class="add-to-cart">Add to Cart</button>
-      </div>
+  <!-- Semi-Header -->
+  <div class="semi-header">
+    Available meals!
+  </div>
+  <div class="menu-container">
+    <div class="menu-item" data-name="Chapati" data-price="10">
+      <h3>Chapati - 10</h3>
+      <button class="add-to-cart">Add to Cart</button>
     </div>
-    <div class="cart">
-      <h2>Your Cart</h2>
-      <ul id="cart-items"></ul>
-      <p>Total: $<span id="total">0</span></p>
-      <button id="checkout" style="display: none;">Proceed to Payment</button>
-      <button id="pay-now" style="display: none;">Pay Now</button>
+    <div class="menu-item" data-name="Sukuma" data-price="8">
+      <h3>Sukuma - 8</h3>
+      <button class="add-to-cart">Add to Cart</button>
     </div>
-  </main>
-  <footer>
-    <p>&copy; 2025 Mess Hall. All rights reserved.</p>
-  </footer>
-  <script src="{% static 'script.js' %}"></script>
+    <div class="menu-item" data-name="Cabbage" data-price="12">
+      <h3>Cabbage - 12</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Beef Stew" data-price="50">
+      <h3>Beef Stew - 50</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Mseto" data-price="30">
+      <h3>Mseto - 30</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Ndengu" data-price="15">
+      <h3>Ndengu - 15</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Beans" data-price="15">
+      <h3>Beans - 15</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Ugali" data-price="6">
+      <h3>Ugali - 6</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Pilau" data-price="70">
+      <h3>Pilau - 70</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Rice" data-price="20">
+      <h3>Rice - 20</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Bajia" data-price="50">
+      <h3>Bajia - 50</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Chips" data-price="50">
+      <h3>Chips - 50</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Andazi" data-price="10">
+      <h3>Andazi - 10</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Omelette" data-price="40">
+      <h3>Omelette - 40</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="menu-item" data-name="Boiled egg" data-price="20">
+      <h3>Boiled egg - 20</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Beverage Header -->
+  <div class="beverage-header">
+    <h2>Today's Beverages</h2>
+  </div>
+
+  <!-- Beverage Container -->
+  <div class="beverage-container">
+    <div class="beverage-item" data-name="Soda" data-price="50">
+      <h3>Soda - 50</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="beverage-item" data-name="Water" data-price="50">
+      <h3>Water - 50</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="beverage-item" data-name="Mango juice" data-price="30">
+      <h3>Mango juice - 30</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="beverage-item" data-name="Minute maid" data-price="70">
+      <h3>Minute maid - 70</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+    <div class="beverage-item" data-name="Milk" data-price="30">
+      <h3>Milk - 30</h3>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Cart Section -->
+  <div class="cart">
+    <button onclick="toggleCart()">My Cart</button> <!-- Changed to a button -->
+    <ul id="cart-items"></ul>
+    <button onclick="payNow()">Pay here</button>
+  </div>
+
+  <script>
+    // Cart Array to Store Selected Items
+    const cart = [];
+
+    // Add Event Listeners to "Add to Cart" Buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        const itemContainer = button.closest('.menu-item, .beverage-item');
+        const itemName = itemContainer.getAttribute('data-name');
+        const itemPrice = itemContainer.getAttribute('data-price');
+        addToCart(itemName, itemPrice);
+      });
+    });
+
+    function toggleCart() {
+  const cartItems = document.getElementById('cart-items');
+  if (cartItems.style.display === 'none') {
+    cartItems.style.display = 'block';
+  } else {
+    cartItems.style.display = 'none';
+  }
+}
+
+    // Add Item to Cart
+    function addToCart(name, price) {
+      const item = { name, price };
+      cart.push(item);
+      updateCart();
+    }
+
+    // Update Cart Display
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      cartItems.innerHTML = '';
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - KES ${item.price}`;
+        cartItems.appendChild(li);
+      });
+    }
+
+    // Pay Now Functionality
+    function payNow() {
+      if (cart.length === 0) {
+        alert('Your cart is empty. Add items to proceed.');
+        return;
+      }
+
+      const mobileNumber = prompt('Enter your M-Pesa number to pay:');
+      if (mobileNumber) {
+        const totalAmount = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+        alert(`Payment successful! M-Pesa number: ${mobileNumber}\nTotal Amount: KES ${totalAmount}\nItems: ${cart.map(item => item.name).join(', ')}`);
+        cart.length = 0; // Clear the cart
+        updateCart();
+      }
+    }
+  </script>
 </body>
 </html>

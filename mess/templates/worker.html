@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Editor</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      color: #FFCE1B;
+      font-style: italic;
+    }
+
+    /* Semi-Header Styles */
+    .semi-header {
+      text-align: center;
+      font-size: 20px;
+      padding: 10px;
+      background-color: #134e32;
+      color: white;
+      font-style: normal;
+    }
+
+    /* Menu Items Styles */
+    .menu-container, .beverage-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .menu-item, .beverage-item {
+      background-color: #134e32;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      color: white;
+      width: 200px;
+      text-align: center;
+    }
+
+    .menu-item h3, .beverage-item h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .menu-item button, .beverage-item button {
+      background-color: white;
+      color: #134e32;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .menu-item button:hover, .beverage-item button:hover {
+      background-color: #FFCE1B;
+    }
+
+    /* Edit Dropdown Styles */
+    .edit-dropdown {
+      margin-top: 10px;
+    }
+
+    .edit-dropdown input {
+      width: 80%;
+      padding: 5px;
+      margin-bottom: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .edit-dropdown button {
+      background-color: #FFCE1B;
+      color: #134e32;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Commit Changes Button */
+    .commit-button {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .commit-button button {
+      background-color: #134e32;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .commit-button button:hover {
+      background-color: #FFCE1B;
+    }
+  </style>
+</head>
+<body>
+  <!-- Semi-Header -->
+  <div class="semi-header">
+    <h2>Today's menu</h2>
+    <p>Edit where necessary</p>
+  </div>
+
+  <!-- Menu Container -->
+  <div class="menu-container">
+    <!-- Existing Menu Items -->
+    <div class="menu-item" data-name="Chapati" data-price="10">
+      <h3>Chapati - 10</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Edit item name">
+        <input type="number" placeholder="Edit price">
+        <button onclick="updateItem(this)">Update</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Sukuma" data-price="8">
+      <h3>Sukuma - 8</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Edit item name">
+        <input type="number" placeholder="Edit price">
+        <button onclick="updateItem(this)">Update</button>
+      </div>
+    </div>
+    <div class="menu-item" data-name="Cabbage" data-price="12">
+        <h3>Cabbage - 12</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Beef stew" data-price="50">
+        <h3>Beef stew - 50</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Mseto" data-price="30">
+        <h3>Mseto - 30</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Ndengu" data-price="15">
+        <h3>Ndengu - 15</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Beans" data-price="15">
+        <h3>Beans - 15</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Ugali" data-price="6">
+        <h3>Ugali - 6</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Pilau" data-price="70">
+        <h3>Pilau - 70</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Rice" data-price="20">
+        <h3>Rice - 20</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Bajia" data-price="50">
+        <h3>Bajia - 50</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Chips" data-price="50">
+        <h3>Chips - 50</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Andazi" data-price="10">
+        <h3>Andazi - 10</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="menu-item" data-name="Omelette" data-price="40">
+        <h3>Omelette - 40</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      
+    <!-- Add more menu items here -->
+
+    <!-- Empty Containers for Extra Items -->
+    <div class="menu-item">
+      <h3>New Item</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Enter item name">
+        <input type="number" placeholder="Enter price">
+        <button onclick="addItem(this)">Add</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <h3>New Item</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Enter item name">
+        <input type="number" placeholder="Enter price">
+        <button onclick="addItem(this)">Add</button>
+      </div>
+    </div>
+    <div class="menu-item">
+        <h3>New Item</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Enter item name">
+          <input type="number" placeholder="Enter price">
+          <button onclick="addItem(this)">Add</button>
+        </div>
+      </div>
+      <div class="menu-item">
+        <h3>New Item</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Enter item name">
+          <input type="number" placeholder="Enter price">
+          <button onclick="addItem(this)">Add</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- Beverage Header -->
+  <div class="semi-header">
+    <h2>Today's Beverages</h2>
+    <p>Edit where necessary</p>
+  </div>
+
+  <!-- Beverage Container -->
+  <div class="beverage-container">
+    <!-- Existing Beverage Items -->
+    <div class="beverage-item" data-name="Soda" data-price="50">
+      <h3>Soda - 50</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Edit item name">
+        <input type="number" placeholder="Edit price">
+        <button onclick="updateItem(this)">Update</button>
+      </div>
+    </div>
+    <div class="beverage-item" data-name="Water" data-price="50">
+      <h3>Water - 50</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Edit item name">
+        <input type="number" placeholder="Edit price">
+        <button onclick="updateItem(this)">Update</button>
+      </div>
+    </div>
+    <div class="beverage-item" data-name="Minute maid" data-price="70">
+        <h3>Minute maid - 70</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+      <div class="beverage-item" data-name="Mango juice" data-price="30">
+        <h3>Mango juice - 30</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Edit item name">
+          <input type="number" placeholder="Edit price">
+          <button onclick="updateItem(this)">Update</button>
+        </div>
+      </div>
+    <!-- Add more beverage items here -->
+
+    <!-- Empty Containers for Extra Items -->
+    <div class="beverage-item">
+      <h3>New Beverage</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Enter item name">
+        <input type="number" placeholder="Enter price">
+        <button onclick="addItem(this)">Add</button>
+      </div>
+    </div>
+    <div class="beverage-item">
+      <h3>New Beverage</h3>
+      <div class="edit-dropdown">
+        <input type="text" placeholder="Enter item name">
+        <input type="number" placeholder="Enter price">
+        <button onclick="addItem(this)">Add</button>
+      </div>
+    </div>
+    <div class="beverage-item">
+        <h3>New Beverage</h3>
+        <div class="edit-dropdown">
+          <input type="text" placeholder="Enter item name">
+          <input type="number" placeholder="Enter price">
+          <button onclick="addItem(this)">Add</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- Commit Changes Button -->
+  <div class="commit-button">
+    <button onclick="commitChanges()">Commit Changes</button>
+  </div>
+
+  <script>
+    // Function to update an existing item
+    function updateItem(button) {
+      const itemContainer = button.closest('.menu-item, .beverage-item');
+      const nameInput = itemContainer.querySelector('input[type="text"]');
+      const priceInput = itemContainer.querySelector('input[type="number"]');
+      const itemName = nameInput.value.trim();
+      const itemPrice = priceInput.value.trim();
+
+      if (itemName && itemPrice) {
+        itemContainer.setAttribute('data-name', itemName);
+        itemContainer.setAttribute('data-price', itemPrice);
+        itemContainer.querySelector('h3').textContent = `${itemName} - ${itemPrice}`;
+        alert('Item updated successfully!');
+      } else {
+        alert('Please fill in both fields.');
+      }
+    }
+
+    // Function to add a new item
+    function addItem(button) {
+      const itemContainer = button.closest('.menu-item, .beverage-item');
+      const nameInput = itemContainer.querySelector('input[type="text"]');
+      const priceInput = itemContainer.querySelector('input[type="number"]');
+      const itemName = nameInput.value.trim();
+      const itemPrice = priceInput.value.trim();
+
+      if (itemName && itemPrice) {
+        itemContainer.setAttribute('data-name', itemName);
+        itemContainer.setAttribute('data-price', itemPrice);
+        itemContainer.querySelector('h3').textContent = `${itemName} - ${itemPrice}`;
+        alert('New item added successfully!');
+      } else {
+        alert('Please fill in both fields.');
+      }
+    }
+
+    // Function to commit changes (save to main menu)
+    function commitChanges() {
+      const menuItems = document.querySelectorAll('.menu-item');
+      const beverageItems = document.querySelectorAll('.beverage-item');
+      const updatedMenu = [];
+
+      menuItems.forEach(item => {
+        updatedMenu.push({
+          name: item.getAttribute('data-name'),
+          price: item.getAttribute('data-price')
+        });
+      });
+
+      beverageItems.forEach(item => {
+        updatedMenu.push({
+          name: item.getAttribute('data-name'),
+          price: item.getAttribute('data-price')
+        });
+      });
+
+      // Save to localStorage (or send to server)
+      localStorage.setItem('updatedMenu', JSON.stringify(updatedMenu));
+      alert('Changes committed successfully!');
+    }
+  </script>
+</body>
+</html>

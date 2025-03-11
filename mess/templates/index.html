@@ -9,17 +9,21 @@
 </head>
 <body>
   <header>
+    {% for message in messages %}
+    <p id="messages"> {{message}} </p>
+    {% endfor %}
     <h1>Welcome to the Mess Hall</h1>
     <nav>
       <a href="{% url 'index' %}">Home</a>
       <a href="{% url 'menu' %}">Menu</a>
-      <a href="{% url 'signup' %}">Sign Up</a>
+      <a href="{% url 'signupPage' %}">Sign Up</a>
 
     </nav>
   </header>
   <main>
     <p>Enjoy delicious meals at affordable prices. Click below to view our menu.</p>
     <a href="{% url 'menu' %}" class="btn">View Menu</a>
+    <a href="{% url 'logoutPage' %}">Logout</a>
   </main>
   <footer>
     <p>&copy; 2025 Mess Hall. All rights reserved.</p>

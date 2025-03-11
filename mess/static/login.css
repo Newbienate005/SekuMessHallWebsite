@@ -1,9 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; 
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,21 +18,21 @@ body {
 
 .card {
     border: none;
-    border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 25%; 
+    width: 25%;
     margin: 0 auto;
 }
 
 .card-header {
-    background-color: #008148; 
-    color: white; 
+    background-color: #008148;
+    color: white;
     text-align: center;
     padding: 15px;
     font-size: 20px;
     font-weight: bold;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
@@ -47,46 +47,55 @@ body {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #333; 
+    color: #333;
 }
 
 .form-group input,
 .form-group select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 14px;
-    transition: border-color 0.3s ease; 
+    transition: border-color 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #008148; 
-    outline: none; 
+    border-color: #008148;
+    outline: none;
 }
 
 .btn {
     width: 100%;
     padding: 10px;
-    background-color: #008148; 
-    color: white; 
+    background-color: #008148;
+    color: white;
     border: none;
-    border-radius: 4px; 
+    border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #0fb300; 
+    background-color: #0fb300;
 }
 
 .card-footer {
-    background-color: #f8f9fa; 
+    background-color: #f8f9fa;
     padding: 10px;
     text-align: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.1); 
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 12px;
     color: #777;
+}
+
+.card-footer a {
+    color: #008148;
+    text-decoration: none;
+}
+
+.card-footer a:hover {
+    text-decoration: underline;
 }

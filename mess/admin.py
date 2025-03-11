@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from mess.models import User
+from mess.models import CustomUser
 
 # Register your models here.
 
-admin.site.register(User)
+admin.site.register(CustomUser)
 

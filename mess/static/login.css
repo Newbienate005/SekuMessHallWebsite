@@ -1,101 +1,102 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+            margin: 0;
+            padding: 0;
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+        }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 25px;
+            border-radius: 12px; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); 
+            width: 320px; 
+            text-align: center;
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-.card {
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 25%;
-    margin: 0 auto;
-}
+        .form-container img {
+            width: 80px; 
+            margin-bottom: 15px; 
+        }
 
-.card-header {
-    background-color: #008148;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            color: #333;
+            font-weight: 600;
+        }
 
-.card-body {
-    padding: 20px;
-}
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
 
-.form-group {
-    margin-bottom: 15px;
-}
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 14px;
+        }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px; 
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
 
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-}
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #008148;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 129, 72, 0.3);
+        }
 
-.form-group input:focus,
-.form-group select:focus {
-    border-color: #008148;
-    outline: none;
-}
+        .form-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #008148; 
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #008148;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        .form-button:hover {
+            background-color: #0fb300;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 129, 72, 0.3);
+        }
 
-.btn:hover {
-    background-color: #0fb300;
-}
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777;
+            opacity: 0.8;
+        }
 
-.card-footer {
-    background-color: #f8f9fa;
-    padding: 10px;
-    text-align: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    font-size: 12px;
-    color: #777;
-}
-
-.card-footer a {
-    color: #008148;
-    text-decoration: none;
-}
-
-.card-footer a:hover {
-    text-decoration: underline;
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }

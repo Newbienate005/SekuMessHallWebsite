@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.forms import UserCreationForm
 
-from mess.models import CustomUser
+from mess.models import ROLE_CHOICES, CustomUser
 from .forms import  SignupForm
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib import messages
@@ -59,6 +59,7 @@ def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        role = request.POST.get('role')
 
         # Authenticate the user
         user = authenticate(request, username=username, password=password)
@@ -71,9 +72,9 @@ def loginPage(request):
         else:
             # Show an error message if authentication fails
             messages.error(request, 'Invalid username or password. Please try again.')
-    
+    context = {'ROLE_CHOICES': ROLE_CHOICES}
     # Render the login page
-    return render(request, 'login.html')
+    return render(request, 'login.html', context)
 
 def logoutPage(request):
     # Log the user out

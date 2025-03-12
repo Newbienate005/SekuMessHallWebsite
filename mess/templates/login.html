@@ -35,6 +35,18 @@
                         <label for="password">Password:</label>
                         <input type="password" name="password" id="password" class="form-control" required>
                     </div>
+
+                    <!-- Role Field -->
+                    <div class="form-group">
+                        <label for="role">Role:</label>
+                        <select name="role" id="role" class="form-control" required>
+                            <option value="" disabled selected>Select your role</option>
+                            {% for value, label in ROLE_CHOICES %}
+                                <option value="{{ value }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn">Login</button>
                 </form>
             </div>
